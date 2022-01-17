@@ -1,0 +1,27 @@
+﻿
+@model L8HandsOn.ViewModels.UserInfoViewModel
+
+@{
+    ViewData["Title"] = "User Movie List";
+}
+
+<h1> Hello @Html.DisplayFor(model => model.User.UserName)! Here are your movies! </h1><hr /><br />
+
+
+<h3>You Have Viewed The Following Movies:</h3><hr /><br />
+<div style="width:fit-content">
+    @foreach(var movie in Model.Movies)
+    {   
+        if(movie != null)
+        {    
+            <div style="margin-bottom:15px;display:flex;padding:5px;justify-content:space-between;border:solid 1px">
+                <h5 style="display:inline;margin-right:20px;">@movie.Title</h5><Button  type="button" class="btn btn-inverse btn-primary btn-sm"
+                    onclick="@("window.location.href='" + @Url.Action("Watch", "Movie", new { movie.Title}) +"'");">
+                    Watch Again
+                </Button>
+            </div>
+        }
+    }
+</div>
+
+

@@ -1,0 +1,19 @@
+﻿@model L8HandsOn.ViewModels.UserInfoViewModel
+
+@{
+    ViewData["Title"] = "User Movie List";
+}
+
+<h3>User: @Html.DisplayFor(model => model.User.UserName) Has Watched The Following Movies: </h3><hr /><br />
+
+<div style="width:fit-content">
+    @foreach(var movie in Model.Movies)
+    {   
+        if(movie != null)
+        {    
+            <div style="margin-bottom:15px;display:flex;padding:5px;justify-content:space-between;border:solid 1px">
+                <h5 style="display:inline;margin-right:20px;">@movie.Title</h5>
+            </div>
+        }
+    }
+</div>

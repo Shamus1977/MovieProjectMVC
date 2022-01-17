@@ -1,0 +1,44 @@
+﻿@model IEnumerable<L8HandsOn.Models.Movie>
+
+@{
+    ViewData["Title"] = "Enjoy These Movies";
+}
+<div style="width:100%;display:flex;justify-content:center;">
+    <div>
+        <h1>Take Your Pick!</h1> 
+        @if (!signInManager.IsSignedIn(User))
+        {
+            <h2>(You Must Login To Watch Movies</h2>
+        }
+        <div style="display:flex; flex-wrap:wrap" >
+            @foreach(var movie in Model)
+            {   
+                if(movie != null)
+                {    
+                    <div style="margin-bottom:15px;margin-right:15px;display:flex;flex-direction:column;
+                                border:solid 1px; padding:10px;width:400px;justify-content:flex-start">
+                        <h5 style="display:inline;margin-right:20px;">@movie.Title</h5>
+                        <div style="margin-left:20px;display:flex;flex-direction:column;">
+                            <h6 style="display:inline;margin-right:20px;">Genre: @movie.Genre</h6>
+                            <h6 style="display:inline;margin-right:20px;">Rated: @movie.Rating</h6>
+                            <h6 style="display:inline;margin-right:20px;">Director:  @movie.Director</h6>
+                            <h6 style="display:inline;margin-right:20px;">Year: @movie.Year</h6>
+                            <h6 style="display:inline;margin-right:20px;">Viewer Rating: @movie.ViewerRating</h6>
+                            <img src="~/images/movie.jpg" asp-append-version="true">
+                             <p>Image by <a href="https://pixabay.com/users/dbreen-1643989/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1085072">Devon Breen</a> 
+                             from<a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1085072">Pixabay</a>
+                            <h6>Summary: </h6>
+                            <p style="display:inline;margin-right:20px;max-width:300px;">@movie.Summary</p>
+                        </div>
+                
+                            <Button  type="button" style="width:75px;margin-top:auto; margin-bottom:5px; margin-left:20px" class="btn btn-inverse btn-primary btn-sm"
+                                onclick="@("window.location.href='" + @Url.Action("Watch", "Movie", new { movie.Title}) +"'");">
+                                Watch
+                            </Button>
+                
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

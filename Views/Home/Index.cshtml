@@ -1,0 +1,57 @@
+﻿@model Movie
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div style="display:flex; flex-wrap:wrap; justify-content:flex-start;">
+    <div style="max-width:450px; border:dashed blue 3px;padding:20px;margin-right:50px">
+        <h2>Welcome To The Final Project Movie Co!</h2>
+        <h4>The Directions Are As Follows:</h4>
+        <ul>
+            <li >The Manager Login is: <ul>
+                <li>Email: Manager@@Manager.com</li>
+                <li>Password: Password1!</li>
+            </ul></li>
+            <li>All Users have The Password Of: Password1!</li>
+            <li>Not All Users Have Watched A Movie.</li>
+            <li>When You Log In As The Manager You Will See A Management Menu In The Header.</li>
+            <li>There Are The Following Users: <ul>
+                <li>User@@User.com</li>
+                <li>UserTwo@@User.com</li>
+                <li>UserThree@@User.com</li>
+            </ul></li>
+            <li>An Anonymous Viewer Can: <ul>
+                <li>See A Movie List.</li>
+                <li>Register As A User.</li>
+                <li>Read These Instructions.</li>
+            </ul></li>
+            <li>A User Can Do The Following: <ul>
+                <li>See A Movie List.</li>
+                <li>Watch A Movie.</li>
+                <li>See A List Of Watched Movies.</li>
+                <li>See Some Account Details.</li>
+                <li>Manage Some Account Details.</li>
+            </ul></li>
+             <li>A Manager Can Do Everything A User Can Do Plus The Following: <ul>
+                <li>Add Users.</li>
+                <li>Edit Users.</li>
+                <li>Remove Users</li>
+                <li>Create Roles.</li>
+                <li>Add Roles.</li>
+                <li>Delete Roles</li>
+                <li>Assign Roles To Users.</li>
+                <li>Remove Roles From Users.</li>
+                <li>Edit Roles.</li>
+                <li>Add Movies</li>
+                <li>Edit Movies.</li>
+                <li>Delete Movies</li>
+                <li>See A list Of Movies Watched By A User.</li>
+                <li>List Users.</li>
+            </ul></li>
+        </ul>
+        <h3>Enjoy!!</h3>
+    </div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome!</h1>
+        <a type="button" class="btn btn-inverse btn-primary btn-lg" asp-area="" asp-controller="Movie" asp-action="MovieList"><h3>See Movies Here!</h3></a>
+    </div>
+</div>

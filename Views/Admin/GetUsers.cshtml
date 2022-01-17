@@ -1,0 +1,50 @@
+﻿@model IEnumerable<User>
+@{
+    ViewBag.Title = "Users";
+}
+
+@if(Model.Any())
+{
+    <h5>Users:</h5>
+
+    <div style="width:fit-content">
+        @foreach(var user in Model)
+        {   
+            if(user != null)
+            {    
+                <div class="alert-primary text-dark" style="border:solid;border-width:1px 1px 0px 1px;">
+                    <h6 style="margin-left:5px;display:inline;margin-right:20px;margin-top:3px">Id: @user.Id</h6>
+                </div>
+                <div style="margin-bottom:15px;display:flex;padding:5px;justify-content:space-between;border:solid 1px">
+                    <h5 style="display:inline;margin-right:20px;margin-top:3px">@user.UserName</h5>
+                    <div>
+                        <Button  type="button" style="height:30.5px" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("Edit", "User", new {id = user.Id}) +"'");">
+                        Edit User
+                        </Button>
+                        <Button  type="button" style="height:30.5px" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("UsersMovieList", "Admin", new {userId = user.Id}) +"'");">
+                        Watched Movies
+                        </Button>
+                        <Button  type="button" style="height:30px" class="btn btn-inverse btn-danger btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("Delete", "User", new {id = user.Id}) +"'");">
+                        Delete User
+                        </Button>
+                    </div>
+                </div>
+            }
+        }
+        <hr>
+        <h5>You Can Create More Users Here:</h5>
+        <div>
+            <a type="button" class="btn btn-inverse btn-primary btn-sm" asp-area="Identity" asp-page="/Account/Register">Create User</a>
+        </div>
+    </div>
+}
+else
+{
+    <h5>No Users Created Yet:</h5>
+    <div>
+        <a type="button" class="btn btn-inverse btn-primary btn-sm" asp-area="Identity" asp-page="/Account/Register">Create User</a>
+    </div>
+}

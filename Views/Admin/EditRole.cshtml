@@ -1,0 +1,80 @@
+﻿@using L8HandsOn.ViewModels
+@model EditRoleViewModel
+@{
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <h2>Edit Role</h2>
+            <hr />
+            <h5>Role:</h5>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Id"></label>
+                <input asp-for="Id" disabled class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="RoleName"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div>
+                <Button  type="submit" class="btn btn-inverse btn-primary btn-sm">
+                        Update
+                </Button>
+                <Button  type="button" class="btn btn-inverse btn-danger btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("GetRoles", "Admin") +"'");">
+                        Cancel
+                </Button>
+            </div>
+        </form><br /><hr />
+ <h5>Users In Roles:</h5><br />
+
+@if(Model.UsersInRoles.Any())
+{
+    <div style="width:fit-content">
+        @foreach(var user in Model.UsersInRoles)
+        {   
+            if(user != null)
+            {    
+                @*<div class="alert-primary text-dark" style="border:solid;border-width:1px 1px 0px 1px;">
+                    <h6 style="margin-left:5px;display:inline;margin-right:20px;margin-top:3px">Id: @user.Id</h6>
+                </div>*@
+                <div style="margin-bottom:15px;display:flex;padding:5px;justify-content:space-between;border:solid 1px">
+                    <h5 style="display:inline;margin-right:20px;margin-top:3px">@user</h5>
+                    @*<div>
+                        <Button  type="button" style="height:30.5px" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("EditRole", "Admin", new {id = role.Id}) +"'");">
+                        Edit Role
+                        </Button>
+                        <Button  type="button" style="height:30px" class="btn btn-inverse btn-danger btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("Delete", "Admin", new {id = @role.Id}) +"'");">
+                        Delete Role
+                        </Button>
+                    </div>*@
+                </div>
+            }
+        }
+        <hr>
+        <h5>You Can Add/Remove Users To Roles Here:</h5>
+        <div>
+            <Button  type="button" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("EditUsersInRole", "Admin", new{roleId = Model.Id}) +"'");">
+                        Add/Remove User
+            </Button>
+        </div>
+    </div>
+}
+else
+{
+    <h5>There Are No Users In This Role. You Can Add Them Here:</h5>
+    <div>
+        <Button  type="button" class="btn btn-inverse btn-primary btn-sm"
+            onclick="@("window.location.href='" + @Url.Action("EditUsersInRole", "Admin", new {roleId = Model.Id}) +"'");">
+            Add User
+        </Button>
+    </div>
+}
+    </div>
+</div>

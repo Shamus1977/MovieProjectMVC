@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IQueryable<IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h5>The Following Roles Have Been Created:</h5><hr /><br />
+
+@if(Model.Any())
+{
+    <div style="width:fit-content">
+        @foreach(var role in Model)
+        {   
+            if(role != null)
+            {    
+                <div class="alert-primary text-dark" style="border:solid;border-width:1px 1px 0px 1px;">
+                    <h6 style="margin-left:5px;display:inline;margin-right:20px;margin-top:3px">Id: @role.Id</h6>
+                </div>
+                <div style="margin-bottom:15px;display:flex;padding:5px;justify-content:space-between;border:solid 1px">
+                    <h5 style="display:inline;margin-right:20px;margin-top:3px">@role.Name</h5>
+                    <div>
+                        <Button  type="button" style="height:30.5px" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("EditRole", "Admin", new {id = role.Id}) +"'");">
+                        Edit or Add User 
+                        </Button>
+                        <Button formaction="post"  type="button" style="height:30px" class="btn btn-inverse btn-danger btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("DeleteRole", "Admin", new {roleId = role.Id}) +"'");">
+                        Delete Role
+                        </Button>
+                    </div>
+                </div>
+            }
+        }
+        <hr>
+        <h5>You Can Create More Roles Here:</h5>
+        <div>
+            <Button  type="button" class="btn btn-inverse btn-primary btn-sm"
+                        onclick="@("window.location.href='" + @Url.Action("CreateRole", "Admin") +"'");">
+                        Create Role
+            </Button>
+        </div>
+    </div>
+}
+else
+{
+    <h5>No Roles Have Been Created. You Can Create One Here:</h5>
+    <div>
+        <Button  type="button" class="btn btn-inverse btn-primary btn-sm"
+                    onclick="@("window.location.href='" + @Url.Action("CreateRole", "Admin") +"'");">
+                    Create Role
+                </Button>
+    </div>
+}
+
